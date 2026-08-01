@@ -18,6 +18,8 @@ import { Route as MapRouteImport } from './routes/map'
 import { Route as NotesRouteImport } from './routes/notes'
 import { Route as NotificationsRouteImport } from './routes/notifications'
 import { Route as PlaylistRouteImport } from './routes/playlist'
+import { Route as ProfileRouteImport } from './routes/profile'
+import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as MemoriesIndexRouteImport } from './routes/memories/index'
 import { Route as MemoriesMemoryIdRouteImport } from './routes/memories/$memoryId'
 
@@ -66,6 +68,16 @@ const PlaylistRoute = PlaylistRouteImport.update({
   path: '/playlist',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ProfileRoute = ProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SettingsRoute = SettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MemoriesIndexRoute = MemoriesIndexRouteImport.update({
   id: '/memories/',
   path: '/memories/',
@@ -87,6 +99,8 @@ export interface FileRoutesByFullPath {
   '/notes': typeof NotesRoute
   '/notifications': typeof NotificationsRoute
   '/playlist': typeof PlaylistRoute
+  '/profile': typeof ProfileRoute
+  '/settings': typeof SettingsRoute
   '/memories/$memoryId': typeof MemoriesMemoryIdRoute
   '/memories/': typeof MemoriesIndexRoute
 }
@@ -100,6 +114,8 @@ export interface FileRoutesByTo {
   '/notes': typeof NotesRoute
   '/notifications': typeof NotificationsRoute
   '/playlist': typeof PlaylistRoute
+  '/profile': typeof ProfileRoute
+  '/settings': typeof SettingsRoute
   '/memories/$memoryId': typeof MemoriesMemoryIdRoute
   '/memories': typeof MemoriesIndexRoute
 }
@@ -114,6 +130,8 @@ export interface FileRoutesById {
   '/notes': typeof NotesRoute
   '/notifications': typeof NotificationsRoute
   '/playlist': typeof PlaylistRoute
+  '/profile': typeof ProfileRoute
+  '/settings': typeof SettingsRoute
   '/memories/$memoryId': typeof MemoriesMemoryIdRoute
   '/memories/': typeof MemoriesIndexRoute
 }
@@ -129,6 +147,8 @@ export interface FileRouteTypes {
     | '/notes'
     | '/notifications'
     | '/playlist'
+    | '/profile'
+    | '/settings'
     | '/memories/$memoryId'
     | '/memories/'
   fileRoutesByTo: FileRoutesByTo
@@ -142,6 +162,8 @@ export interface FileRouteTypes {
     | '/notes'
     | '/notifications'
     | '/playlist'
+    | '/profile'
+    | '/settings'
     | '/memories/$memoryId'
     | '/memories'
   id:
@@ -155,6 +177,8 @@ export interface FileRouteTypes {
     | '/notes'
     | '/notifications'
     | '/playlist'
+    | '/profile'
+    | '/settings'
     | '/memories/$memoryId'
     | '/memories/'
   fileRoutesById: FileRoutesById
@@ -169,6 +193,8 @@ export interface RootRouteChildren {
   NotesRoute: typeof NotesRoute
   NotificationsRoute: typeof NotificationsRoute
   PlaylistRoute: typeof PlaylistRoute
+  ProfileRoute: typeof ProfileRoute
+  SettingsRoute: typeof SettingsRoute
   MemoriesMemoryIdRoute: typeof MemoriesMemoryIdRoute
   MemoriesIndexRoute: typeof MemoriesIndexRoute
 }
@@ -238,6 +264,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PlaylistRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/profile': {
+      id: '/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof ProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/settings': {
+      id: '/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof SettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/memories/': {
       id: '/memories/'
       path: '/memories'
@@ -265,9 +305,21 @@ const rootRouteChildren: RootRouteChildren = {
   NotesRoute: NotesRoute,
   NotificationsRoute: NotificationsRoute,
   PlaylistRoute: PlaylistRoute,
+  ProfileRoute: ProfileRoute,
+  SettingsRoute: SettingsRoute,
   MemoriesMemoryIdRoute: MemoriesMemoryIdRoute,
   MemoriesIndexRoute: MemoriesIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
