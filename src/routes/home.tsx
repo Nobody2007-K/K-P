@@ -109,7 +109,7 @@ function HomeScreen() {
 
       <Link
         to="/notes"
-        className="glass animate-rise mt-5 block rounded-3xl p-5"
+        className="glass animate-rise mt-5 mb-14 block rounded-3xl p-5"
         style={{ animationDelay: "420ms" }}
       >
         <p className="text-xs tracking-wide text-muted-foreground uppercase">Latest love note</p>
