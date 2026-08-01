@@ -10,17 +10,25 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as CalendarRouteImport } from './routes/calendar'
 import { Route as ChatRouteImport } from './routes/chat'
 import { Route as HomeRouteImport } from './routes/home'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as MapRouteImport } from './routes/map'
 import { Route as NotesRouteImport } from './routes/notes'
+import { Route as NotificationsRouteImport } from './routes/notifications'
+import { Route as PlaylistRouteImport } from './routes/playlist'
 import { Route as MemoriesIndexRouteImport } from './routes/memories/index'
 import { Route as MemoriesMemoryIdRouteImport } from './routes/memories/$memoryId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CalendarRoute = CalendarRouteImport.update({
+  id: '/calendar',
+  path: '/calendar',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ChatRoute = ChatRouteImport.update({
@@ -48,6 +56,16 @@ const NotesRoute = NotesRouteImport.update({
   path: '/notes',
   getParentRoute: () => rootRouteImport,
 } as any)
+const NotificationsRoute = NotificationsRouteImport.update({
+  id: '/notifications',
+  path: '/notifications',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlaylistRoute = PlaylistRouteImport.update({
+  id: '/playlist',
+  path: '/playlist',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MemoriesIndexRoute = MemoriesIndexRouteImport.update({
   id: '/memories/',
   path: '/memories/',
@@ -61,32 +79,41 @@ const MemoriesMemoryIdRoute = MemoriesMemoryIdRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/calendar': typeof CalendarRoute
   '/chat': typeof ChatRoute
   '/home': typeof HomeRoute
   '/login': typeof LoginRoute
   '/map': typeof MapRoute
   '/notes': typeof NotesRoute
+  '/notifications': typeof NotificationsRoute
+  '/playlist': typeof PlaylistRoute
   '/memories/$memoryId': typeof MemoriesMemoryIdRoute
   '/memories/': typeof MemoriesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/calendar': typeof CalendarRoute
   '/chat': typeof ChatRoute
   '/home': typeof HomeRoute
   '/login': typeof LoginRoute
   '/map': typeof MapRoute
   '/notes': typeof NotesRoute
+  '/notifications': typeof NotificationsRoute
+  '/playlist': typeof PlaylistRoute
   '/memories/$memoryId': typeof MemoriesMemoryIdRoute
   '/memories': typeof MemoriesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/calendar': typeof CalendarRoute
   '/chat': typeof ChatRoute
   '/home': typeof HomeRoute
   '/login': typeof LoginRoute
   '/map': typeof MapRoute
   '/notes': typeof NotesRoute
+  '/notifications': typeof NotificationsRoute
+  '/playlist': typeof PlaylistRoute
   '/memories/$memoryId': typeof MemoriesMemoryIdRoute
   '/memories/': typeof MemoriesIndexRoute
 }
@@ -94,42 +121,54 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/calendar'
     | '/chat'
     | '/home'
     | '/login'
     | '/map'
     | '/notes'
+    | '/notifications'
+    | '/playlist'
     | '/memories/$memoryId'
     | '/memories/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/calendar'
     | '/chat'
     | '/home'
     | '/login'
     | '/map'
     | '/notes'
+    | '/notifications'
+    | '/playlist'
     | '/memories/$memoryId'
     | '/memories'
   id:
     | '__root__'
     | '/'
+    | '/calendar'
     | '/chat'
     | '/home'
     | '/login'
     | '/map'
     | '/notes'
+    | '/notifications'
+    | '/playlist'
     | '/memories/$memoryId'
     | '/memories/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CalendarRoute: typeof CalendarRoute
   ChatRoute: typeof ChatRoute
   HomeRoute: typeof HomeRoute
   LoginRoute: typeof LoginRoute
   MapRoute: typeof MapRoute
   NotesRoute: typeof NotesRoute
+  NotificationsRoute: typeof NotificationsRoute
+  PlaylistRoute: typeof PlaylistRoute
   MemoriesMemoryIdRoute: typeof MemoriesMemoryIdRoute
   MemoriesIndexRoute: typeof MemoriesIndexRoute
 }
@@ -141,6 +180,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/calendar': {
+      id: '/calendar'
+      path: '/calendar'
+      fullPath: '/calendar'
+      preLoaderRoute: typeof CalendarRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/chat': {
@@ -178,6 +224,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof NotesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/notifications': {
+      id: '/notifications'
+      path: '/notifications'
+      fullPath: '/notifications'
+      preLoaderRoute: typeof NotificationsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/playlist': {
+      id: '/playlist'
+      path: '/playlist'
+      fullPath: '/playlist'
+      preLoaderRoute: typeof PlaylistRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/memories/': {
       id: '/memories/'
       path: '/memories'
@@ -197,11 +257,14 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CalendarRoute: CalendarRoute,
   ChatRoute: ChatRoute,
   HomeRoute: HomeRoute,
   LoginRoute: LoginRoute,
   MapRoute: MapRoute,
   NotesRoute: NotesRoute,
+  NotificationsRoute: NotificationsRoute,
+  PlaylistRoute: PlaylistRoute,
   MemoriesMemoryIdRoute: MemoriesMemoryIdRoute,
   MemoriesIndexRoute: MemoriesIndexRoute,
 }
