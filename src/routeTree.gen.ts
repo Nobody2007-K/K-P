@@ -14,6 +14,9 @@ import { Route as ChatRouteImport } from './routes/chat'
 import { Route as HomeRouteImport } from './routes/home'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as MapRouteImport } from './routes/map'
+import { Route as NotesRouteImport } from './routes/notes'
+import { Route as MemoriesIndexRouteImport } from './routes/memories/index'
+import { Route as MemoriesMemoryIdRouteImport } from './routes/memories/$memoryId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -40,6 +43,21 @@ const MapRoute = MapRouteImport.update({
   path: '/map',
   getParentRoute: () => rootRouteImport,
 } as any)
+const NotesRoute = NotesRouteImport.update({
+  id: '/notes',
+  path: '/notes',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MemoriesIndexRoute = MemoriesIndexRouteImport.update({
+  id: '/memories/',
+  path: '/memories/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MemoriesMemoryIdRoute = MemoriesMemoryIdRouteImport.update({
+  id: '/memories/$memoryId',
+  path: '/memories/$memoryId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -47,6 +65,9 @@ export interface FileRoutesByFullPath {
   '/home': typeof HomeRoute
   '/login': typeof LoginRoute
   '/map': typeof MapRoute
+  '/notes': typeof NotesRoute
+  '/memories/$memoryId': typeof MemoriesMemoryIdRoute
+  '/memories/': typeof MemoriesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -54,6 +75,9 @@ export interface FileRoutesByTo {
   '/home': typeof HomeRoute
   '/login': typeof LoginRoute
   '/map': typeof MapRoute
+  '/notes': typeof NotesRoute
+  '/memories/$memoryId': typeof MemoriesMemoryIdRoute
+  '/memories': typeof MemoriesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -62,13 +86,41 @@ export interface FileRoutesById {
   '/home': typeof HomeRoute
   '/login': typeof LoginRoute
   '/map': typeof MapRoute
+  '/notes': typeof NotesRoute
+  '/memories/$memoryId': typeof MemoriesMemoryIdRoute
+  '/memories/': typeof MemoriesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/chat' | '/home' | '/login' | '/map'
+  fullPaths:
+    | '/'
+    | '/chat'
+    | '/home'
+    | '/login'
+    | '/map'
+    | '/notes'
+    | '/memories/$memoryId'
+    | '/memories/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/chat' | '/home' | '/login' | '/map'
-  id: '__root__' | '/' | '/chat' | '/home' | '/login' | '/map'
+  to:
+    | '/'
+    | '/chat'
+    | '/home'
+    | '/login'
+    | '/map'
+    | '/notes'
+    | '/memories/$memoryId'
+    | '/memories'
+  id:
+    | '__root__'
+    | '/'
+    | '/chat'
+    | '/home'
+    | '/login'
+    | '/map'
+    | '/notes'
+    | '/memories/$memoryId'
+    | '/memories/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -77,6 +129,9 @@ export interface RootRouteChildren {
   HomeRoute: typeof HomeRoute
   LoginRoute: typeof LoginRoute
   MapRoute: typeof MapRoute
+  NotesRoute: typeof NotesRoute
+  MemoriesMemoryIdRoute: typeof MemoriesMemoryIdRoute
+  MemoriesIndexRoute: typeof MemoriesIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -116,6 +171,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof MapRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/notes': {
+      id: '/notes'
+      path: '/notes'
+      fullPath: '/notes'
+      preLoaderRoute: typeof NotesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/memories/': {
+      id: '/memories/'
+      path: '/memories'
+      fullPath: '/memories/'
+      preLoaderRoute: typeof MemoriesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/memories/$memoryId': {
+      id: '/memories/$memoryId'
+      path: '/memories/$memoryId'
+      fullPath: '/memories/$memoryId'
+      preLoaderRoute: typeof MemoriesMemoryIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -125,6 +201,9 @@ const rootRouteChildren: RootRouteChildren = {
   HomeRoute: HomeRoute,
   LoginRoute: LoginRoute,
   MapRoute: MapRoute,
+  NotesRoute: NotesRoute,
+  MemoriesMemoryIdRoute: MemoriesMemoryIdRoute,
+  MemoriesIndexRoute: MemoriesIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
