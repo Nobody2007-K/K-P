@@ -41,7 +41,7 @@ function Login() {
 
       <form
         onSubmit={submit}
-        className="glass-dark animate-rise relative w-full max-w-sm rounded-3xl p-7 text-primary-foreground"
+        className="glass-dark animate-rise relative w-full max-w-sm rounded-3xl bg-[color-mix(in_oklab,oklch(0.2_0.03_300)_55%,transparent)] p-7 text-primary-foreground"
       >
         <div className="mb-6 flex flex-col items-center">
           <div className="gradient-love shadow-glow flex size-16 items-center justify-center rounded-2xl">
