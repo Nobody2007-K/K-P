@@ -110,7 +110,7 @@ function HomeScreen() {
       <Link
         to="/notes"
         className="glass animate-rise mt-5 block rounded-3xl p-5"
-        style={{ animationDelay: "420ms" }}
+        style={{ animationDelay: "420ms" }} /* spacing for FAB */
       >
         <p className="text-xs tracking-wide text-muted-foreground uppercase">Latest love note</p>
         <p className="mt-2 font-hand text-2xl text-primary">

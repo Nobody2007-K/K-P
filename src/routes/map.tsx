@@ -37,7 +37,7 @@ const PEOPLE = [
     battery: "45%",
     updated: "2 min ago",
     tint: "var(--primary)",
-    pos: { top: "62%", left: "63%" },
+    pos: { top: "50%", left: "66%" },
   },
 ];
 

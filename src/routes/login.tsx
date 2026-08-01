@@ -37,11 +37,11 @@ function Login() {
         height={1536}
         className="absolute inset-0 size-full scale-110 object-cover blur-lg"
       />
-      <div className="absolute inset-0 bg-[color-mix(in_oklab,var(--plum)_45%,transparent)]" />
+      <div className="absolute inset-0 bg-[color-mix(in_oklab,var(--plum)_68%,transparent)]" />
 
       <form
         onSubmit={submit}
-        className="glass animate-rise relative w-full max-w-sm rounded-3xl p-7 text-primary-foreground"
+        className="glass-dark animate-rise relative w-full max-w-sm rounded-3xl p-7 text-primary-foreground"
       >
         <div className="mb-6 flex flex-col items-center">
           <div className="gradient-love shadow-glow flex size-16 items-center justify-center rounded-2xl">
