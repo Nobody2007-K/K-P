@@ -44,7 +44,7 @@ const PEOPLE = [
 function MapScreen() {
   const [active, setActive] = useState(1);
   const [satellite, setSatellite] = useState(false);
-  const person = PEOPLE[active];
+  const person = PEOPLE[active] ?? PEOPLE[0]!;
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-background">
