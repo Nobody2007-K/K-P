@@ -256,14 +256,14 @@ VALUES
     'Kashish',
     'Kashish Shrestha',
     'boyfriend',
-    '$argon2id$v=19$m=65536,t=3,p=4$hoMsbUVf39Y05e6yAhFkEw$5vaSadcTGhWv3sxN+e0l4hvmSVeYy7znNGV/TPY+Xkk',
+    '$argon2id$v=19$m=65536,t=3,p=4$0hqjVGrtnXOulZKSsnaOsQ$fRWnOHT+SEz9aqIl8DHsAtpoip7fB5Z3iUeqkeiRHjg',
     FALSE, NOW(), NOW()
 ),
 (
     'Preshna',
     'Preshna GC',
     'girlfriend',
-    '$argon2id$v=19$m=65536,t=3,p=4$jLsHMlK91R8IUboykJe6pw$fxwl9CYVEa1bwl1M9H1qIcfai6mbiDipEiY0H3Q9izw',
+    '$argon2id$v=19$m=65536,t=3,p=4$6723lvJ+r1UqZWytlVKqtQ$GfJkA8iVdNQM0REGrt1d0WbwlvzQCobG97so1ubDboE',
     FALSE, NOW(), NOW()
 )
 ON CONFLICT (username) DO UPDATE
