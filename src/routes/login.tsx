@@ -31,7 +31,7 @@ function Login() {
     username.toLowerCase() === "preshna" ? HER :
     null;
 
-  function submit(e: React.FormEvent) {
+  async function submit(e: React.FormEvent) {
     e.preventDefault();
     setError("");
 
@@ -40,14 +40,14 @@ function Login() {
       return;
     }
 
-    // Strict: only Kashish and Preshna can log in — exact usernames
-    const result = attemptLogin(username.trim(), password);
+    setLoading(true);
+    const result = await attemptLogin(username.trim(), password);
     if (!result) {
+      setLoading(false);
       setError("Invalid username or password. Only Kashish and Preshna can access this app.");
       return;
     }
 
-    setLoading(true);
     // Navigate to the correct home view
     setTimeout(() => navigate({ to: "/home" }), 800);
   }

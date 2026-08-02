@@ -18,11 +18,14 @@ export function useAuth() {
     return () => window.removeEventListener("storage", onStorage);
   }, []);
 
-  const login = useCallback((username: string, password: string): boolean => {
-    const result = attemptLogin(username, password);
-    if (result) setUser(result);
-    return result !== null;
-  }, []);
+  const login = useCallback(
+    async (username: string, password: string): Promise<boolean> => {
+      const result = await attemptLogin(username, password);
+      if (result) setUser(result);
+      return result !== null;
+    },
+    [],
+  );
 
   const logout = useCallback(() => {
     clearAuth();
