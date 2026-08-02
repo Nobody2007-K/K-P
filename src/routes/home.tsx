@@ -1,61 +1,91 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { useEffect } from "react";
 import {
-  MapPin,
-  MessageCircle,
-  Images,
-  Music,
-  CalendarDays,
-  Mail,
-  Bell,
-  Heart,
-  CloudSun,
+  MapPin, MessageCircle, Images, Music,
+  CalendarDays, Mail, Bell, Heart, CloudSun,
 } from "lucide-react";
-import couple from "@/assets/couple.jpg";
 import { Screen } from "@/components/kp/Shell";
 import { daysTogether, HIM, HER } from "@/lib/kp-data";
+import { getStoredUser } from "@/lib/auth";
 
 export const Route = createFileRoute("/home")({
   head: () => ({
     meta: [
       { title: "Home — K&P Love" },
       { name: "description", content: "Your together-counter, quick actions and today's moments." },
-      { property: "og:title", content: "Home — K&P Love" },
-      { property: "og:description", content: "Your together-counter and quick actions." },
     ],
   }),
   component: HomeScreen,
 });
 
 const ACTIONS = [
-  { to: "/map", label: "Live Location", icon: MapPin, tint: "var(--primary)" },
-  { to: "/chat", label: "Chat", icon: MessageCircle, tint: "var(--lavender)" },
-  { to: "/memories", label: "Memories", icon: Images, tint: "var(--coral)" },
-  { to: "/playlist", label: "Playlist", icon: Music, tint: "var(--plum)" },
-  { to: "/calendar", label: "Calendar", icon: CalendarDays, tint: "var(--gold)" },
-  { to: "/notes", label: "Love Notes", icon: Mail, tint: "var(--primary-soft)" },
+  { to: "/map",      label: "Live Location", icon: MapPin,        tint: "var(--primary)" },
+  { to: "/chat",     label: "Chat",          icon: MessageCircle, tint: "var(--lavender)" },
+  { to: "/memories", label: "Memories",      icon: Images,        tint: "var(--coral)" },
+  { to: "/playlist", label: "Playlist",      icon: Music,         tint: "var(--plum)" },
+  { to: "/calendar", label: "Calendar",      icon: CalendarDays,  tint: "var(--gold)" },
+  { to: "/notes",    label: "Love Notes",    icon: Mail,          tint: "var(--primary-soft)" },
 ] as const;
 
 function HomeScreen() {
+  const navigate = useNavigate();
+  const user = getStoredUser();
+
+  // Guard — if not logged in redirect to login
+  useEffect(() => {
+    if (!user) navigate({ to: "/login" });
+  }, [user, navigate]);
+
+  if (!user) return null;
+
+  const isBoyfriend = user.role === "Boyfriend";
+  // "me" = logged-in user,  "partner" = the other one
+  const me      = isBoyfriend ? HIM : HER;
+  const partner = isBoyfriend ? HER : HIM;
+
   const days = daysTogether();
+  const hour = new Date().getHours();
+  const greeting =
+    hour < 12 ? "Good morning" :
+    hour < 17 ? "Good afternoon" :
+    "Good evening";
+
   const today = new Date().toLocaleDateString(undefined, {
-    weekday: "long",
-    day: "numeric",
-    month: "long",
+    weekday: "long", day: "numeric", month: "long",
   });
+
+  // Personalised love note footer line
+  const noteAuthor = isBoyfriend ? HIM.short : HER.short;
+  const noteText   = isBoyfriend
+    ? "If the day feels heavy, I'm one call away."
+    : "I smiled at nothing today and then realized it was you.";
 
   return (
     <Screen fab>
+      {/* ── Header ── */}
       <header className="animate-rise flex items-center gap-3">
-        <img
-          src={couple}
-          alt="Kashish and Preshna"
-          width={1024}
-          height={1024}
-          className="size-12 rounded-2xl object-cover ring-2 ring-primary/30"
-        />
+        <div className="relative flex shrink-0 items-center">
+          {/* Me first, partner behind */}
+          <img
+            src={me.avatar}
+            alt={me.short}
+            width={96}
+            height={96}
+            className="size-11 rounded-2xl object-cover ring-2 ring-background"
+          />
+          <img
+            src={partner.avatar}
+            alt={partner.short}
+            width={96}
+            height={96}
+            className="-ml-3 size-9 rounded-xl object-cover ring-2 ring-background opacity-80"
+          />
+        </div>
         <div className="flex-1">
           <p className="text-sm text-muted-foreground">{today}</p>
-          <h1 className="text-lg font-semibold">Good evening, {HIM.short} ❤️</h1>
+          <h1 className="text-lg font-semibold">
+            {greeting}, {me.short} {isBoyfriend ? "💙" : "💗"}
+          </h1>
         </div>
         <Link
           to="/notifications"
@@ -67,6 +97,7 @@ function HomeScreen() {
         </Link>
       </header>
 
+      {/* ── Together counter ── */}
       <section
         className="animate-rise shadow-glow mt-6 overflow-hidden rounded-3xl p-6 text-primary-foreground"
         style={{ backgroundImage: "var(--gradient-love)", animationDelay: "60ms" }}
@@ -78,13 +109,20 @@ function HomeScreen() {
         <p className="mt-1 text-sm opacity-90">days, and still counting</p>
 
         <div className="mt-5 flex items-center justify-between rounded-2xl bg-white/15 px-4 py-3 text-sm backdrop-blur-md">
-          <span>{HIM.short} &amp; {HER.short}</span>
+          <div className="flex items-center gap-2">
+            <img src={me.avatar} alt={me.short} width={32} height={32}
+              className="size-6 rounded-full object-cover ring-1 ring-white/50" />
+            <img src={partner.avatar} alt={partner.short} width={32} height={32}
+              className="-ml-2 size-6 rounded-full object-cover ring-1 ring-white/50" />
+            <span>{me.short} &amp; {partner.short}</span>
+          </div>
           <span className="flex items-center gap-1.5 opacity-90">
             <CloudSun className="size-4" /> 24° Kathmandu
           </span>
         </div>
       </section>
 
+      {/* ── Quick actions ── */}
       <h2 className="animate-rise mt-7 mb-3 text-sm font-semibold tracking-wide text-muted-foreground uppercase">
         Quick actions
       </h2>
@@ -107,16 +145,15 @@ function HomeScreen() {
         ))}
       </div>
 
+      {/* ── Latest love note ── */}
       <Link
         to="/notes"
         className="glass animate-rise mt-5 mb-14 block rounded-3xl p-5"
         style={{ animationDelay: "420ms" }}
       >
         <p className="text-xs tracking-wide text-muted-foreground uppercase">Latest love note</p>
-        <p className="mt-2 font-hand text-2xl text-primary">
-          “If the day feels heavy, I'm one call away.”
-        </p>
-        <p className="mt-2 text-xs text-muted-foreground">— {HIM.short}, today</p>
+        <p className="mt-2 font-hand text-2xl text-primary">"{noteText}"</p>
+        <p className="mt-2 text-xs text-muted-foreground">— {noteAuthor}, today</p>
       </Link>
     </Screen>
   );

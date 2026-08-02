@@ -257,3 +257,55 @@
 @utility animate-drift {
   animation: marker-drift 6s ease-in-out infinite;
 }
+
+/* ── Leaflet overrides — match K&P Love design ───────────────────────────── */
+
+/* Remove default attribution box styling conflict */
+.leaflet-container {
+  font-family: var(--font-sans) !important;
+  background: transparent !important;
+}
+
+/* Glassmorphism popup */
+.leaflet-popup-content-wrapper {
+  background: color-mix(in oklab, white 82%, transparent) !important;
+  backdrop-filter: blur(16px) saturate(140%) !important;
+  border: 1px solid color-mix(in oklab, white 50%, transparent) !important;
+  border-radius: 1rem !important;
+  box-shadow: 0 8px 24px -8px rgba(0,0,0,.18) !important;
+  padding: 0 !important;
+}
+
+.dark .leaflet-popup-content-wrapper {
+  background: color-mix(in oklab, oklch(0.21 0.025 300) 88%, transparent) !important;
+  border-color: rgba(255,255,255,.12) !important;
+}
+
+.leaflet-popup-content {
+  margin: 12px 14px !important;
+}
+
+.leaflet-popup-tip {
+  background: color-mix(in oklab, white 82%, transparent) !important;
+}
+
+.dark .leaflet-popup-tip {
+  background: oklch(0.21 0.025 300) !important;
+}
+
+/* Hide the default close button — we don't need it */
+.leaflet-popup-close-button {
+  display: none !important;
+}
+
+/* Attribution — small & unobtrusive */
+.leaflet-control-attribution {
+  font-size: 9px !important;
+  opacity: 0.55 !important;
+  background: transparent !important;
+}
+
+/* Remove default zoom control (we use custom buttons) */
+.leaflet-control-zoom {
+  display: none !important;
+}

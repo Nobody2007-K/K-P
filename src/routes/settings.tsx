@@ -1,16 +1,17 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { ArrowLeft, Bell, Map, Timer, ShieldCheck, Info, Moon } from "lucide-react";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { useEffect } from "react";
+import { ArrowLeft, Bell, Map, Timer, ShieldCheck, Info, Moon, LogOut } from "lucide-react";
 import { Screen } from "@/components/kp/Shell";
 import { Switch } from "@/components/ui/switch";
 import { useTheme } from "@/hooks/use-theme";
+import { HIM, HER } from "@/lib/kp-data";
+import { getStoredUser, logout as authLogout } from "@/lib/auth";
 
 export const Route = createFileRoute("/settings")({
   head: () => ({
     meta: [
       { title: "Settings — K&P Love" },
-      { name: "description", content: "Theme, notifications, map preferences and privacy for your shared app." },
-      { property: "og:title", content: "Settings — K&P Love" },
-      { property: "og:description", content: "Theme, notifications, map and privacy." },
+      { name: "description", content: "Theme, notifications, map preferences and privacy." },
     ],
   }),
   component: SettingsScreen,
@@ -18,21 +19,58 @@ export const Route = createFileRoute("/settings")({
 
 function SettingsScreen() {
   const { dark, toggle } = useTheme();
+  const navigate         = useNavigate();
+  const user             = getStoredUser();
+
+  useEffect(() => {
+    if (!user) navigate({ to: "/login" });
+  }, [user, navigate]);
+
+  if (!user) return null;
+
+  const isBoyfriend = user.role === "Boyfriend";
+  const me      = isBoyfriend ? HIM : HER;
+  const partner = isBoyfriend ? HER : HIM;
+
+  function handleLogout() {
+    authLogout();
+    navigate({ to: "/login" });
+  }
 
   return (
     <Screen>
+      {/* ── Header ── */}
       <header className="animate-rise mb-5 flex items-center gap-3">
-        <Link
-          to="/profile"
-          aria-label="Back to profile"
-          className="glass flex size-11 items-center justify-center rounded-2xl"
-        >
+        <Link to="/profile" aria-label="Back to profile"
+          className="glass flex size-11 items-center justify-center rounded-2xl">
           <ArrowLeft className="size-5" />
         </Link>
-        <h1 className="text-2xl font-semibold">Settings</h1>
+        <h1 className="flex-1 text-2xl font-semibold">Settings</h1>
+        {/* Me + partner avatars */}
+        <div className="flex items-center -space-x-2">
+          <img src={me.avatar} alt={me.short} width={48} height={48}
+            className="size-9 rounded-full object-cover ring-2 ring-background z-10 shadow-sm" />
+          <img src={partner.avatar} alt={partner.short} width={48} height={48}
+            className="size-8 rounded-full object-cover ring-2 ring-background opacity-75" />
+        </div>
       </header>
 
-      <div className="glass animate-rise divide-y divide-border rounded-3xl">
+      {/* ── Account info ── */}
+      <div className="glass animate-rise mb-4 flex items-center gap-3 rounded-3xl px-4 py-3"
+        style={{ animationDelay: "40ms" }}>
+        <img src={me.avatar} alt={me.short} width={64} height={64}
+          className="size-12 rounded-2xl object-cover ring-2 ring-primary/30" />
+        <div>
+          <p className="font-semibold">{me.name}</p>
+          <p className="text-xs text-muted-foreground">
+            {me.role} · Logged in as <span className="text-primary font-medium">{me.short}</span>
+          </p>
+        </div>
+      </div>
+
+      {/* ── Settings rows ── */}
+      <div className="glass animate-rise divide-y divide-border rounded-3xl"
+        style={{ animationDelay: "80ms" }}>
         <Row icon={<Moon className="size-5" />} label="Dark mode" desc="Matte black & soft pink">
           <Switch checked={dark} onCheckedChange={toggle} aria-label="Toggle dark mode" />
         </Row>
@@ -53,6 +91,18 @@ function SettingsScreen() {
         </Row>
       </div>
 
+      {/* ── Logout ── */}
+      <button
+        onClick={handleLogout}
+        className="glass animate-rise mt-4 flex min-h-14 w-full items-center gap-3 rounded-3xl px-4 py-3 text-left transition-opacity hover:opacity-80"
+        style={{ animationDelay: "120ms" }}
+      >
+        <LogOut className="size-5 text-destructive" />
+        <span className="flex-1 text-sm font-medium text-destructive">Log out</span>
+        <img src={me.avatar} alt="" width={32} height={32}
+          className="size-7 rounded-full object-cover opacity-60" />
+      </button>
+
       <p className="mt-6 text-center text-xs text-muted-foreground">
         Built with love, for Kashish &amp; Preshna ❤️
       </p>
@@ -61,10 +111,7 @@ function SettingsScreen() {
 }
 
 function Row({
-  icon,
-  label,
-  desc,
-  children,
+  icon, label, desc, children,
 }: {
   icon: React.ReactNode;
   label: string;

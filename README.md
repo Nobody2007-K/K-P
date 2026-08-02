@@ -1,590 +1,306 @@
-# K&P Together
-
-UI/UX Design Prompt — "K&P Love"
-
-You are an award-winning Mobile UI/UX Designer specializing in premium, emotional, modern mobile applications.
-
-Design a beautiful Android mobile application called K&P Love, created exclusively for two people:
-
-❤️ Kashish Shrestha (Boyfriend)
-
-❤️ Preshna GC (Girlfriend)
-
-The application should feel like a private digital world for the couple—not a social media app. Every screen should evoke warmth, trust, romance, elegance, and simplicity.
-
-Design Style
-
-Create a premium and modern interface inspired by Apple Human Interface Guidelines and Google's Material Design 3.
-
-The design should feel:
-
-Elegant
-
-Romantic
-
-Minimal
-
-Luxury
-
-Soft
-
-Emotional
-
-Modern
-
-Clean
-
-Avoid childish hearts or overly flashy effects. Romance should be expressed through refined design rather than excessive decorations.
-
-Color Palette
-
-Primary Colors:
-
-Soft Pink (#F48FB1)
-
-Rose Pink (#EC407A)
-
-Secondary Colors:
-
-Lavender (#B39DDB)
-
-Deep Purple (#7E57C2)
-
-Neutral Colors:
-
-White (#FFFFFF)
-
-Light Gray (#F5F5F5)
-
-Dark Gray (#1E1E1E)
-
-Accent Colors:
-
-Gold (#FFD54F)
-
-Coral (#FF8A65)
-
-Dark Mode:
-
-Matte Black
-
-Deep Purple
-
-Soft Pink accents
-
-Typography
-
-Use elegant fonts such as:
-
-Poppins
-
-SF Pro Display
-
-Inter
-
-Use bold headings and clean body text.
-
-Maintain excellent readability.
-
-Icons
-
-Use rounded Material Icons.
-
-Use subtle romantic icons:
-
-Heart
-
-Location
-
-Camera
-
-Memories
-
-Calendar
-
-Chat
-
-Music
-
-Gallery
-
-Notifications
-
-Settings
-
-Animations
-
-Create smooth premium animations:
-
-Screen transitions
-
-Hero animations
-
-Floating Action Button animation
-
-Marker movement on maps
-
-Button ripple effects
-
-Smooth loading indicators
-
-Card hover effects
-
-Soft fade transitions
-
-Micro-interactions throughout the app
-
-Animations should be subtle and fluid.
-
-Splash Screen
-
-Background:
-
-Beautiful gradient:
-
-Deep Purple → Pink → White
-
-Center:
-
-K&P Love Logo
-
-Below:
-
-"Always Together ❤️"
-
-Soft heart pulse animation.
-
-Duration:
-
-2–3 seconds.
-
-Login Screen
-
-Minimal design.
-
-Display:
-
-Couple logo
-
-Welcome message
-
-Username
-
-Password
-
-Remember Me
-
-Login button
-
-Beautiful blurred romantic background.
-
-No registration page.
-
-Home Screen
-
-Top section:
-
-Greeting
-
-"Good Evening Kashish ❤️"
-
-Display:
-
-Couple profile picture
-
-Current date
-
-Weather (optional)
-
-Center:
-
-Relationship counter:
-
-❤️ Together for
-
-XXX Days
-
-Bottom:
-
-Beautiful quick action cards:
-
-📍 Live Location
-
-💬 Chat
-
-📸 Memories
-
-🎵 Playlist
-
-📅 Calendar
-
-💌 Love Notes
-
-Use rounded glass cards with icons.
-
-Bottom Navigation:
-
-Home
-
-Map
-
-Chat
-
-Memories
-
-Profile
-
-Live Location Screen
-
-Full-screen Google Map.
-
-Features:
-
-Boyfriend marker
-
-Girlfriend marker
-
-Custom avatar markers
-
-Current address
-
-Distance between both users
-
-Estimated travel time
-
-Recenter button
-
-Map type switch
-
-Zoom controls
-
-Bottom draggable information card:
-
-Shows:
-
-Name
-
-Current Address
-
-Latitude
-
-Longitude
-
-Speed
-
-Battery percentage (optional)
-
-Last updated time
-
-Smooth marker movement.
-
-Chat Screen
-
-Modern messaging UI.
-
-Features:
-
-Rounded chat bubbles.
-
-Delivered
-
-Read receipts
-
-Typing animation
-
-Voice messages
-
-Photos
-
-GIFs
-
-Emoji reactions
-
-Pinned messages
-
-Floating message input.
-
-Wallpaper:
-
-Soft blurred romantic background.
-
-Memories Screen
-
-Pinterest-style gallery.
-
-Each memory card includes:
-
-Image
-
-Caption
-
-Date
-
-Location
-
-Favorite button
-
-Upload animation.
-
-Memory Detail
-
-Large image.
-
-Date.
-
-Caption.
-
-Location.
-
-Share.
-
-Delete.
-
-Favorite.
-
-Love Notes Screen
-
-Sticky note-inspired cards.
-
-Pastel colors.
-
-Handwritten font for titles.
-
-Smooth page transitions.
-
-Calendar Screen
-
-Beautiful monthly calendar.
-
-Highlight:
-
-Anniversary
-
-Birthdays
-
-Special dates
-
-Upcoming events.
-
-Countdown cards.
-
-Playlist Screen
-
-Premium music player.
-
-Album artwork.
-
-Play
-
-Pause
-
-Next
-
-Shuffle
-
-Progress bar.
-
-Animated album rotation.
-
-Notifications Screen
-
-Beautiful timeline.
-
-Examples:
-
-❤️ Preshna arrived home.
-
-📍 Kashish updated location.
-
-💌 New Love Note.
-
-📸 New Memory Added.
-
-Profile Screen
-
-Display:
-
-Large profile image.
-
-Name.
-
-Role:
-
-Boyfriend ❤️
-
-Girlfriend ❤️
-
-Relationship counter.
-
-Settings.
-
-Theme switch.
-
-Logout.
-
-Settings Screen
-
-Options:
-
-Dark Mode
-
-Notification Settings
-
-Map Preferences
-
-Location Update Frequency
-
-Privacy Settings
-
-About
-
-App Version
-
-Floating Action Button
-
-Rounded floating button.
-
-Gradient background.
-
-Shadow.
-
-Haptic feedback.
-
-Cards
-
-Rounded corners (20–28px)
-
-Soft shadows
-
-Glassmorphism effect
-
-Blurred background
-
-Gradient borders
-
-Buttons
-
-Rounded pill-shaped buttons.
-
-Gradient:
-
-Pink → Purple.
-
-Smooth press animation.
-
-Loading Screens
-
-Animated heart pulse.
-
-Circular progress indicator.
-
-Beautiful loading messages:
-
-"Finding your loved one..."
-
-"Loading memories..."
-
-"Connecting hearts..."
-
-Empty States
-
-Illustrations with warm messages.
-
-Example:
-
-"No memories yet.
-
-Create your first beautiful moment together ❤️"
-
-Illustrations
-
-Use premium vector illustrations.
-
-Minimal style.
-
-Soft pastel colors.
-
-Accessibility
-
-High contrast.
-
-Readable fonts.
-
-Large touch targets.
-
-Responsive layouts.
-
-Support different screen sizes.
-
-Deliverables
-
-Design complete high-fidelity UI/UX in Figma including:
-
-Splash Screen
-
-Login
-
-Home
-
-Live Location
-
-Chat
-
-Memories
-
-Memory Details
-
-Love Notes
-
-Calendar
-
-Playlist
-
-Notifications
-
-Profile
-
-Settings
-
-Light Mode
-
-Dark Mode
-
-Design System
-
-Components
-
-Icons
-
-Color Styles
-
-Typography
-
-Auto Layout
-
-Interactive Prototype
-
-Developer Handoff
-
-The final design should feel like a premium, elegant, emotionally warm couples-only application with polished animations, excellent usability, and a luxurious aesthetic that is both modern and timeless.
-
-This project was built with [Lovable](https://lovable.dev).
-
-## Build with Lovable
-
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/417ae671-aac2-4c4c-a589-6710b0ad250d).
-
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
-
-## Development
-
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+# K&P Love 💕
+
+> A private digital world exclusively for **Kashish Shrestha** & **Preshna GC**
+
+---
+
+## What is this?
+
+K&P Love is a full-stack private couples application — not a social network, not a public app. It's a secure, personal space built for exactly two people. Every feature is designed around warmth, trust, and intimacy.
+
+---
+
+## Features
+
+| Screen | What it does |
+|---|---|
+| 🔐 Login | Private access — no sign-up, no OTP, just the two of you |
+| 🏠 Home | Relationship day counter, quick actions, latest love note |
+| 📍 Live Location | Real-time GPS map with distance between both users |
+| 💬 Chat | Private messaging with typing indicators and read receipts |
+| 📸 Memories | Pinterest-style gallery of shared photos and videos |
+| 💌 Love Notes | Sticky-note style personal letters to each other |
+| 📅 Calendar | Shared calendar — anniversaries, birthdays, date nights |
+| 🎵 Playlist | Shared music playlist with an animated player |
+| 🔔 Notifications | Timeline of activity between you two |
+| 👤 Profile | Individual profile photos, relationship counter, stats |
+| ⚙️ Settings | Dark mode, notification preferences, privacy controls |
+
+---
+
+## Tech Stack
+
+### Frontend
+| Layer | Technology |
+|---|---|
+| Framework | React 19 + TypeScript |
+| Routing | TanStack Router (file-based) |
+| Styling | Tailwind CSS v4 |
+| UI Components | shadcn/ui (Radix UI) |
+| Build Tool | Vite 8 |
+| State | TanStack Query |
+
+### Backend
+| Layer | Technology |
+|---|---|
+| Framework | FastAPI (Python 3.13+) |
+| Database | Supabase (PostgreSQL) |
+| ORM | SQLAlchemy 2.0 (Async) |
+| Migrations | Alembic |
+| Auth | JWT (Access + Refresh tokens) |
+| Password Hashing | Argon2id |
+| Real-time | FastAPI WebSockets |
+| File Storage | Supabase Storage |
+| Push Notifications | Firebase Cloud Messaging |
+| Logging | Loguru |
+| Server | Uvicorn |
+
+---
+
+## Project Structure
+
+```
+private-pair-space/
+├── src/
+│   ├── assets/              # Shared images
+│   ├── Logo_Photo/
+│   │   ├── 1.jpg            # Preshna's profile photo (girlfriend)
+│   │   └── 2.jpeg           # Kashish's profile photo (boyfriend)
+│   ├── components/
+│   │   ├── kp/              # App-specific components (Shell, nav)
+│   │   └── ui/              # shadcn/ui primitives
+│   ├── hooks/               # use-theme, use-mobile
+│   ├── lib/
+│   │   ├── kp-data.ts       # All app data + avatar exports
+│   │   └── utils.ts
+│   └── routes/              # File-based pages
+│       ├── index.tsx         # Splash screen
+│       ├── login.tsx
+│       ├── home.tsx
+│       ├── chat.tsx
+│       ├── map.tsx
+│       ├── memories/
+│       ├── notes.tsx
+│       ├── calendar.tsx
+│       ├── playlist.tsx
+│       ├── notifications.tsx
+│       ├── profile.tsx
+│       └── settings.tsx
+├── backend/
+│   ├── app/
+│   │   ├── api/             # Route handlers
+│   │   ├── core/            # Config, security, logging
+│   │   ├── database/        # SQLAlchemy session + base
+│   │   ├── models/          # ORM models
+│   │   ├── schemas/         # Pydantic v2 schemas
+│   │   ├── repositories/    # Data access layer
+│   │   ├── services/        # Business logic
+│   │   ├── dependencies/    # FastAPI DI
+│   │   ├── middleware/      # HTTP logging
+│   │   └── websocket/       # Real-time manager + router
+│   ├── alembic/             # DB migrations
+│   ├── database/            # SQL schema files
+│   │   ├── schema.sql        # ← Run this in Supabase SQL Editor
+│   │   └── ...
+│   ├── scripts/
+│   │   └── seed.py          # Creates Kashish & Preshna users
+│   ├── tests/               # Pytest test suite
+│   ├── .env                 # Environment variables (not committed)
+│   ├── .env.example
+│   └── requirements.txt
+├── vite.config.ts
+├── package.json
+└── README.md
+```
+
+---
+
+## Quick Start — Frontend
+
+### Prerequisites
+- Node.js 20+ and npm
+
+### Install & Run
 
 ```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
+# Clone the repo
+git clone <repository-url>
+cd private-pair-space
+
+# Install dependencies
+npm install
+
+# Start the dev server — opens http://localhost:5173 automatically
 npm run dev
 ```
+
+The browser opens at **http://localhost:5173** automatically.
+
+### Other frontend commands
+
+```sh
+npm run build        # Production build
+npm run preview      # Preview the production build locally
+npm run lint         # ESLint
+npm run format       # Prettier
+```
+
+---
+
+## Quick Start — Backend
+
+### Prerequisites
+- Python 3.13+
+
+### Install & Run
+
+```sh
+cd backend
+
+# Create virtual environment
+python -m venv .venv
+.venv\Scripts\activate        # Windows
+# source .venv/bin/activate   # macOS / Linux
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Copy and fill in environment variables
+cp .env.example .env
+# Edit .env — add your Supabase DB URL and credentials
+
+# Run database migrations
+alembic upgrade head
+
+# Seed the two predefined users
+python -m scripts.seed
+
+# Start the API server
+uvicorn app.main:app --reload --port 8000
+```
+
+API docs available at: **http://localhost:8000/docs**
+
+---
+
+## Database Setup (Supabase)
+
+1. Go to [https://eylcotgelxdtjhjslhfk.supabase.co](https://eylcotgelxdtjhjslhfk.supabase.co)
+2. Open **SQL Editor → New Query**
+3. Paste the entire contents of `backend/database/schema.sql`
+4. Click **Run**
+
+This creates all 8 tables, enables Row Level Security, seeds Kashish & Preshna with hashed passwords, and creates the 4 storage buckets in one go.
+
+### Database Tables
+
+| Table | Purpose |
+|---|---|
+| `users` | Kashish & Preshna — exactly 2 rows |
+| `messages` | Private chat messages |
+| `live_locations` | Real-time GPS — 1 row per user, upserted |
+| `memories` | Shared photos and videos |
+| `love_notes` | Private letters |
+| `calendar_events` | Shared couple calendar |
+| `notifications` | In-app notifications |
+| `playlist` | Shared music playlist |
+
+---
+
+## Authentication
+
+No registration. No sign-up. No forgot password. No OTP.
+
+Only login — two predefined users:
+
+| User | Display Name | Role | Password |
+|---|---|---|---|
+| `Kashish` | Kashish Shrestha | Boyfriend | `Preshna` |
+| `Preshna` | Preshna GC | Girlfriend | `Kashish` |
+
+Passwords are stored as **Argon2id hashes** — never plaintext.
+
+---
+
+## API Endpoints (Backend)
+
+| Method | Endpoint | Description |
+|---|---|---|
+| POST | `/api/auth/login` | Login |
+| POST | `/api/auth/refresh` | Refresh access token |
+| POST | `/api/auth/logout` | Logout |
+| GET | `/api/auth/me` | Current user |
+| GET | `/api/chat/messages` | Message history |
+| POST | `/api/chat/send` | Send message |
+| PUT | `/api/chat/{id}` | Edit message |
+| DELETE | `/api/chat/{id}` | Delete message |
+| POST | `/api/location/update` | Update GPS |
+| GET | `/api/location/both` | Both locations + distance |
+| GET | `/api/memories` | List memories |
+| POST | `/api/memories` | Upload memory |
+| GET | `/api/notes` | List love notes |
+| POST | `/api/notes` | Create note |
+| GET | `/api/events` | Calendar events |
+| POST | `/api/events` | Create event |
+| GET | `/api/notifications` | Notifications |
+| PUT | `/api/notifications/read` | Mark all read |
+| GET | `/api/playlist` | Playlist |
+| POST | `/api/playlist` | Add track |
+| `WS` | `/ws?token=...` | WebSocket — real-time events |
+
+---
+
+## WebSocket Events
+
+Connect: `ws://localhost:8000/ws?token=<access_token>`
+
+| Direction | Event | Description |
+|---|---|---|
+| Client → Server | `ping` | Keepalive |
+| Client → Server | `typing` | Typing indicator |
+| Client → Server | `read_receipt` | Mark messages read |
+| Server → Client | `pong` | Keepalive reply |
+| Server → Client | `new_message` | Incoming message |
+| Server → Client | `typing` | Partner is typing |
+| Server → Client | `read_receipt` | Messages were read |
+| Server → Client | `user_status` | Online / offline |
+| Server → Client | `location_update` | Partner's GPS updated |
+
+---
+
+## Environment Variables
+
+Copy `backend/.env.example` to `backend/.env` and fill in:
+
+```env
+SECRET_KEY=<min 32 random chars>
+SUPABASE_URL=https://eylcotgelxdtjhjslhfk.supabase.co
+SUPABASE_ANON_KEY=<your anon key>
+SUPABASE_SERVICE_ROLE_KEY=<your service role key>
+SUPABASE_DB_URL=postgresql+asyncpg://postgres.<ref>:<password>@<host>:5432/postgres
+GOOGLE_MAPS_API_KEY=<optional>
+FIREBASE_CREDENTIALS_PATH=firebase-credentials.json
+```
+
+---
+
+## Design
+
+- **Color palette** — Soft Pink (`#F48FB1`), Rose Pink (`#EC407A`), Lavender (`#B39DDB`), Gold (`#FFD54F`), Coral (`#FF8A65`)
+- **Typography** — Poppins (headings), Inter (body), Caveat (handwritten notes)
+- **Style** — Glassmorphism cards, gradient backgrounds, smooth micro-animations
+- **Dark mode** — Matte black with soft pink accents, toggled from Profile → Settings
+
+---
+
+## Running Tests (Backend)
+
+```sh
+cd backend
+pip install aiosqlite  # in-memory test DB
+pytest
+```
+
+---
+
+Made with 💕 for Kashish & Preshna — always together.

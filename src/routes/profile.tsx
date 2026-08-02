@@ -1,10 +1,11 @@
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { useEffect } from "react";
 import { Settings, LogOut, Heart, Moon, Images, Mail, CalendarDays } from "lucide-react";
-import couple from "@/assets/couple.jpg";
 import { Screen } from "@/components/kp/Shell";
 import { Switch } from "@/components/ui/switch";
 import { useTheme } from "@/hooks/use-theme";
 import { daysTogether, HIM, HER, MEMORIES, NOTES, EVENTS } from "@/lib/kp-data";
+import { getStoredUser, logout as authLogout } from "@/lib/auth";
 
 export const Route = createFileRoute("/profile")({
   head: () => ({
@@ -21,26 +22,59 @@ export const Route = createFileRoute("/profile")({
 function ProfileScreen() {
   const { dark, toggle } = useTheme();
   const navigate = useNavigate();
+  const user = getStoredUser();
+
+  useEffect(() => {
+    if (!user) navigate({ to: "/login" });
+  }, [user, navigate]);
+
+  if (!user) return null;
+
+  const isBoyfriend = user.role === "Boyfriend";
+  const me      = isBoyfriend ? HIM : HER;
+  const partner = isBoyfriend ? HER : HIM;
+
+  function handleLogout() {
+    authLogout();
+    navigate({ to: "/login" });
+  }
 
   return (
     <Screen>
       <section className="animate-rise flex flex-col items-center pt-4">
-        <img
-          src={couple}
-          alt="Kashish and Preshna"
-          width={1024}
-          height={1024}
-          className="shadow-glow size-28 rounded-[2rem] object-cover ring-4 ring-primary/20"
-        />
+        {/* Individual profile photos — me large, partner small */}
+        <div className="flex items-end gap-3">
+          <div className="flex flex-col items-center gap-1.5">
+            <img
+              src={me.avatar}
+              alt={me.short}
+              width={256}
+              height={256}
+              className="shadow-glow size-24 rounded-[1.5rem] object-cover ring-4 ring-primary/30"
+            />
+            <span className="text-xs font-semibold text-primary">{me.short} (You)</span>
+          </div>
+          <Heart className="mb-9 size-5 shrink-0 animate-heart text-primary" fill="currentColor" />
+          <div className="flex flex-col items-center gap-1.5">
+            <img
+              src={partner.avatar}
+              alt={partner.short}
+              width={256}
+              height={256}
+              className="shadow-glow size-20 rounded-[1.5rem] object-cover ring-4 ring-primary/20"
+            />
+            <span className="text-xs font-medium text-muted-foreground">{partner.short}</span>
+          </div>
+        </div>
         <h1 className="mt-4 text-xl font-semibold">
-          {HIM.short} &amp; {HER.short}
+          {me.short} &amp; {partner.short}
         </h1>
         <div className="mt-2 flex gap-2 text-xs">
           <span className="rounded-full bg-primary/12 px-3 py-1 font-medium text-primary">
-            {HIM.role} ❤️
+            {me.role} ❤️ (You)
           </span>
           <span className="rounded-full bg-accent/25 px-3 py-1 font-medium text-accent-foreground">
-            {HER.role} ❤️
+            {partner.role} ❤️
           </span>
         </div>
       </section>
@@ -73,7 +107,7 @@ function ProfileScreen() {
           <Switch checked={dark} onCheckedChange={toggle} aria-label="Toggle dark mode" />
         </div>
         <button
-          onClick={() => navigate({ to: "/login" })}
+          onClick={handleLogout}
           className="flex min-h-14 w-full items-center gap-3 px-4 py-3 text-left"
         >
           <LogOut className="size-5 text-destructive" />

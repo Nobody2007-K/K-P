@@ -1,6 +1,7 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Heart } from "lucide-react";
+import { HIM, HER } from "@/lib/kp-data";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -35,8 +36,25 @@ function Splash() {
       style={{ backgroundImage: "var(--gradient-splash)" }}
     >
       <div className="animate-rise flex flex-col items-center">
-        <div className="glass flex size-28 items-center justify-center rounded-[2rem]">
-          <Heart className="size-12 animate-heart text-primary-foreground" fill="currentColor" />
+        {/* Profile photos stacked with heart */}
+        <div className="relative flex items-center justify-center">
+          <img
+            src={HIM.avatar}
+            alt={HIM.short}
+            width={128}
+            height={128}
+            className="shadow-glow size-20 rounded-[1.5rem] object-cover ring-4 ring-white/30 -rotate-3"
+          />
+          <div className="z-10 -mx-2 flex size-12 items-center justify-center rounded-full bg-white/20 backdrop-blur-md ring-2 ring-white/30">
+            <Heart className="size-6 animate-heart text-primary-foreground" fill="currentColor" />
+          </div>
+          <img
+            src={HER.avatar}
+            alt={HER.short}
+            width={128}
+            height={128}
+            className="shadow-glow size-20 rounded-[1.5rem] object-cover ring-4 ring-white/30 rotate-3"
+          />
         </div>
         <h1 className="mt-7 text-4xl font-semibold text-primary-foreground">K&amp;P Love</h1>
         <p className="mt-2 text-sm tracking-[0.3em] text-primary-foreground/80 uppercase">

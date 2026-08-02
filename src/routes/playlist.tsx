@@ -1,32 +1,58 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { useState, useEffect } from "react";
 import { Play, Pause, SkipBack, SkipForward, Shuffle, Heart } from "lucide-react";
 import album from "@/assets/album.jpg";
 import { Screen, ScreenHeader } from "@/components/kp/Shell";
-import { PLAYLIST } from "@/lib/kp-data";
+import { PLAYLIST, HIM, HER } from "@/lib/kp-data";
+import { getStoredUser } from "@/lib/auth";
 
 export const Route = createFileRoute("/playlist")({
   head: () => ({
     meta: [
       { title: "Our Playlist — K&P Love" },
-      { name: "description", content: "The songs that belong to the two of you, in one player." },
-      { property: "og:title", content: "Our Playlist — K&P Love" },
-      { property: "og:description", content: "The songs that belong to you two." },
+      { name: "description", content: "The songs that belong to the two of you." },
     ],
   }),
   component: PlaylistScreen,
 });
 
 function PlaylistScreen() {
+  const navigate = useNavigate();
+  const user     = getStoredUser();
+
+  useEffect(() => {
+    if (!user) navigate({ to: "/login" });
+  }, [user, navigate]);
+
   const [playing, setPlaying] = useState(true);
-  const [index, setIndex] = useState(0);
-  const track = PLAYLIST[index] ?? PLAYLIST[0]!;
+  const [index, setIndex]     = useState(0);
+
+  if (!user) return null;
+
+  const isBoyfriend = user.role === "Boyfriend";
+  const me      = isBoyfriend ? HIM : HER;
+  const partner = isBoyfriend ? HER : HIM;
+  const track   = PLAYLIST[index] ?? PLAYLIST[0]!;
 
   return (
     <Screen>
       <ScreenHeader title="Our Playlist" subtitle={`${PLAYLIST.length} songs · 19 min`} />
 
-      <section className="animate-rise flex flex-col items-center">
+      {/* ── Shared by ── */}
+      <div className="animate-rise mb-1 flex items-center gap-2">
+        <div className="flex items-center -space-x-2">
+          <img src={me.avatar} alt={me.short} width={48} height={48}
+            className="size-7 rounded-full object-cover ring-2 ring-background z-10" />
+          <img src={partner.avatar} alt={partner.short} width={48} height={48}
+            className="size-7 rounded-full object-cover ring-2 ring-background" />
+        </div>
+        <p className="text-xs text-muted-foreground">
+          Shared by <span className="font-medium text-foreground">You</span> &amp; {partner.short}
+        </p>
+      </div>
+
+      {/* ── Player ── */}
+      <section className="animate-rise flex flex-col items-center" style={{ animationDelay: "60ms" }}>
         <img
           src={album}
           alt={`${track.title} artwork`}
@@ -50,14 +76,13 @@ function PlaylistScreen() {
         </div>
 
         <div className="mt-5 flex items-center gap-6">
-          <button aria-label="Shuffle" className="text-muted-foreground transition-transform active:scale-90">
+          <button aria-label="Shuffle"
+            className="text-muted-foreground transition-transform active:scale-90">
             <Shuffle className="size-5" />
           </button>
-          <button
-            aria-label="Previous"
+          <button aria-label="Previous"
             onClick={() => setIndex((i) => (i - 1 + PLAYLIST.length) % PLAYLIST.length)}
-            className="transition-transform active:scale-90"
-          >
+            className="transition-transform active:scale-90">
             <SkipBack className="size-7" fill="currentColor" />
           </button>
           <button
@@ -65,13 +90,13 @@ function PlaylistScreen() {
             onClick={() => setPlaying((p) => !p)}
             className="gradient-love shadow-glow flex size-16 items-center justify-center rounded-full text-primary-foreground transition-transform active:scale-90"
           >
-            {playing ? <Pause className="size-7" fill="currentColor" /> : <Play className="size-7" fill="currentColor" />}
+            {playing
+              ? <Pause className="size-7" fill="currentColor" />
+              : <Play  className="size-7" fill="currentColor" />}
           </button>
-          <button
-            aria-label="Next"
+          <button aria-label="Next"
             onClick={() => setIndex((i) => (i + 1) % PLAYLIST.length)}
-            className="transition-transform active:scale-90"
-          >
+            className="transition-transform active:scale-90">
             <SkipForward className="size-7" fill="currentColor" />
           </button>
           <button aria-label="Favorite" className="text-primary transition-transform active:scale-90">
@@ -80,6 +105,7 @@ function PlaylistScreen() {
         </div>
       </section>
 
+      {/* ── Track list ── */}
       <h3 className="mt-8 mb-3 text-sm font-semibold tracking-wide text-muted-foreground uppercase">
         Up next
       </h3>

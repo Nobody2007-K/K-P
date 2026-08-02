@@ -1,6 +1,10 @@
 import mem1 from "@/assets/mem1.jpg";
 import mem2 from "@/assets/mem2.jpg";
 import mem3 from "@/assets/mem3.jpg";
+import himAvatar from "@/Logo_Photo/2.jpeg";
+import herAvatar from "@/Logo_Photo/1.jpg";
+
+export { himAvatar, herAvatar };
 
 export const START_DATE = new Date("2022-02-14T00:00:00Z");
 
@@ -8,8 +12,8 @@ export function daysTogether() {
   return Math.floor((Date.now() - START_DATE.getTime()) / 86_400_000);
 }
 
-export const HIM = { name: "Kashish Shrestha", short: "Kashish", role: "Boyfriend", initials: "KS" };
-export const HER = { name: "Preshna GC", short: "Preshna", role: "Girlfriend", initials: "PG" };
+export const HIM = { name: "Kashish Shrestha", short: "Kashish", role: "Boyfriend", initials: "KS", avatar: himAvatar };
+export const HER = { name: "Preshna GC", short: "Preshna", role: "Girlfriend", initials: "PG", avatar: herAvatar };
 
 export type Memory = {
   id: string;

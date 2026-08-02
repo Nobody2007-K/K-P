@@ -1,3 +1,22 @@
+# Dependencies
+node_modules
+.pnp
+.pnp.js
+
+# Build outputs
+dist
+dist-ssr
+.output
+.vercel/output
+.vinxi
+.nitro
+.wrangler/
+.dev.vars
+.tanstack/**
+
+# TanStack / Nitro
+*.local
+
 # Logs
 logs
 *.log
@@ -7,20 +26,7 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-node_modules
-dist
-dist-ssr
-.output
-.vinxi
-.tanstack/**
-.nitro
-*.local
-
-# Wrangler / Cloudflare
-.wrangler/
-.dev.vars
-
-# Editor directories and files
+# Editor
 .vscode/*
 !.vscode/extensions.json
 .idea
@@ -30,3 +36,21 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Python / Backend
+backend/.env
+backend/__pycache__/
+backend/**/__pycache__/
+backend/*.pyc
+backend/.venv/
+backend/venv/
+backend/logs/
+backend/firebase-credentials.json
+*.pyc
+__pycache__/
+
+# Secrets — never commit
+.env
+.env.local
+.env.production
+.env.*.local
