@@ -31,6 +31,15 @@ function MemoriesScreen() {
         }
       />
 
+      {MEMORIES.length === 0 ? (
+        <div className="flex flex-col items-center gap-3 py-20 text-center">
+          <span className="text-5xl">📸</span>
+          <p className="font-semibold text-foreground">No memories yet</p>
+          <p className="text-sm text-muted-foreground">
+            Create your first beautiful moment together ❤️
+          </p>
+        </div>
+      ) : (
       <div className="columns-2 gap-3 [column-fill:_balance]">
         {MEMORIES.map((m, i) => (
           <Link
@@ -63,6 +72,7 @@ function MemoriesScreen() {
           </Link>
         ))}
       </div>
+      )}
     </Screen>
   );
 }

@@ -85,13 +85,20 @@ function CalendarScreen() {
       <h2 className="mt-6 mb-3 text-sm font-semibold tracking-wide text-muted-foreground uppercase">
         Upcoming
       </h2>
+      {EVENTS.length === 0 ? (
+        <div className="flex flex-col items-center gap-3 py-10 text-center">
+          <span className="text-5xl">📅</span>
+          <p className="font-semibold text-foreground">No events yet</p>
+          <p className="text-sm text-muted-foreground">
+            Add your anniversaries, birthdays and special dates ❤️
+          </p>
+        </div>
+      ) : (
       <div className="space-y-3">
         {EVENTS.map((e, i) => {
-          // Label birthday events with the right person's avatar
-          const isMyBirthday   = e.label.toLowerCase().includes(me.short.toLowerCase());
-          const partnerBday    = e.label.toLowerCase().includes(partner.short.toLowerCase());
-          const avatarToShow   = isMyBirthday ? me.avatar : partnerBday ? partner.avatar : null;
-
+          const isMyBirthday = e.label.toLowerCase().includes(me.short.toLowerCase());
+          const partnerBday  = e.label.toLowerCase().includes(partner.short.toLowerCase());
+          const avatarToShow = isMyBirthday ? me.avatar : partnerBday ? partner.avatar : null;
           return (
             <div key={e.label} style={{ animationDelay: `${i * 60}ms` }}
               className="glass animate-rise flex items-center gap-3 rounded-3xl p-4">
@@ -105,9 +112,7 @@ function CalendarScreen() {
               )}
               <div className="flex-1">
                 <p className="font-medium">
-                  {isMyBirthday
-                    ? e.label.replace(me.short, "Your Birthday")
-                    : e.label}
+                  {isMyBirthday ? e.label.replace(me.short, "Your Birthday") : e.label}
                 </p>
                 <p className="text-xs text-muted-foreground">{e.note}</p>
               </div>
@@ -121,6 +126,7 @@ function CalendarScreen() {
           );
         })}
       </div>
+      )}
     </Screen>
   );
 }

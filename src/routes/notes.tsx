@@ -63,6 +63,15 @@ function NotesScreen() {
         </p>
       </div>
 
+      {NOTES.length === 0 ? (
+        <div className="flex flex-col items-center gap-3 py-16 text-center">
+          <span className="text-5xl">💌</span>
+          <p className="font-semibold text-foreground">No notes yet</p>
+          <p className="text-sm text-muted-foreground">
+            Tap the + button to write your first love note for {isBoyfriend ? HER.short : HIM.short}
+          </p>
+        </div>
+      ) : (
       <div className="grid grid-cols-2 gap-3">
         {NOTES.map((n, i) => {
           const isMyNote = n.from === me.short;
@@ -76,7 +85,6 @@ function NotesScreen() {
               }}
               className="animate-rise shadow-soft flex min-h-40 flex-col rounded-3xl p-4 transition-transform duration-300 hover:rotate-0 hover:-translate-y-1"
             >
-              {/* "From you" badge */}
               {isMyNote && (
                 <span className="mb-1 self-start rounded-full bg-primary/20 px-2 py-0.5 text-[9px] font-semibold uppercase tracking-wide text-primary">
                   From you
@@ -97,6 +105,7 @@ function NotesScreen() {
           );
         })}
       </div>
+      )}
     </Screen>
   );
 }

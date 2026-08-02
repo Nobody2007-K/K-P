@@ -54,12 +54,6 @@ function HomeScreen() {
     weekday: "long", day: "numeric", month: "long",
   });
 
-  // Personalised love note footer line
-  const noteAuthor = isBoyfriend ? HIM.short : HER.short;
-  const noteText   = isBoyfriend
-    ? "If the day feels heavy, I'm one call away."
-    : "I smiled at nothing today and then realized it was you.";
-
   return (
     <Screen fab>
       {/* ── Header ── */}
@@ -151,9 +145,11 @@ function HomeScreen() {
         className="glass animate-rise mt-5 mb-14 block rounded-3xl p-5"
         style={{ animationDelay: "420ms" }}
       >
-        <p className="text-xs tracking-wide text-muted-foreground uppercase">Latest love note</p>
-        <p className="mt-2 font-hand text-2xl text-primary">"{noteText}"</p>
-        <p className="mt-2 text-xs text-muted-foreground">— {noteAuthor}, today</p>
+        <p className="text-xs tracking-wide text-muted-foreground uppercase">Love Notes</p>
+        <p className="mt-2 font-hand text-2xl text-primary">
+          "Write your first note for {partner.short} ✍️"
+        </p>
+        <p className="mt-2 text-xs text-muted-foreground">— tap to open</p>
       </Link>
     </Screen>
   );

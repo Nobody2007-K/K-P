@@ -1,6 +1,6 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useState, useEffect } from "react";
-import { Camera, Mic, Plus, Send, Smile, Pin, Check, CheckCheck, ArrowLeft } from "lucide-react";
+import { Camera, Mic, Plus, Send, Smile, Check, CheckCheck, ArrowLeft } from "lucide-react";
 import bg from "@/assets/romantic-bg.jpg";
 import { BottomNav } from "@/components/kp/Shell";
 import { MESSAGES, HIM, HER } from "@/lib/kp-data";
@@ -86,16 +86,24 @@ function ChatScreen() {
           />
         </header>
 
-        {/* ── Pinned ── */}
-        <div className="glass mx-5 mt-3 flex items-center gap-2 rounded-2xl px-3 py-2 text-xs">
-          <Pin className="size-3.5 text-[var(--gold)]" />
-          <span className="truncate text-muted-foreground">
-            Pinned: "Anniversary dinner — 14 Feb, 7pm"
-          </span>
-        </div>
+        {/* ── Pinned ── only show if there's something pinned */}
 
         {/* ── Messages ── */}
         <div className="flex-1 space-y-3 px-5 pt-4 pb-44">
+          {messages.length === 0 && (
+            <div className="flex flex-col items-center gap-3 py-20 text-center">
+              <div className="flex -space-x-3">
+                <img src={me.avatar} alt={me.short} width={56} height={56}
+                  className="size-14 rounded-full object-cover ring-3 ring-background" />
+                <img src={partner.avatar} alt={partner.short} width={56} height={56}
+                  className="size-14 rounded-full object-cover ring-3 ring-background" />
+              </div>
+              <p className="font-semibold text-foreground">Say hello to {partner.short} 👋</p>
+              <p className="text-sm text-muted-foreground">
+                Your messages are private — just the two of you
+              </p>
+            </div>
+          )}
           {messages.map((m, i) => {
             const mine = m.from === myKey;
             return (
@@ -140,18 +148,7 @@ function ChatScreen() {
             );
           })}
 
-          {/* Typing indicator — partner side */}
-          <div className="flex items-end gap-2 justify-start">
-            <img src={partner.avatar} alt={partner.short} width={32} height={32}
-              className="size-7 rounded-full object-cover ring-1 ring-border" />
-            <div className="glass flex items-center gap-1 rounded-3xl rounded-bl-lg px-4 py-3">
-              {[0, 1, 2].map((d) => (
-                <span key={d}
-                  className="size-1.5 animate-bounce rounded-full bg-primary"
-                  style={{ animationDelay: `${d * 140}ms` }} />
-              ))}
-            </div>
-          </div>
+          {/* typing indicator only shown when backend confirms partner is typing */}
         </div>
 
         {/* ── Input bar ── */}
