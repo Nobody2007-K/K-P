@@ -79,7 +79,7 @@ export function setMockLocation(username: string, lat: number, lng: number) {
 }
 
 // ── Backend API calls ────────────────────────────────────────────────────────
-const API_BASE = import.meta.env["VITE_API_URL"] as string | undefined ?? "http://localhost:8000";
+const API_BASE = (import.meta.env["VITE_API_URL"] as string | undefined ?? "").replace(/\/$/, "") || "http://localhost:8000";
 
 async function apiFetch(path: string, init?: RequestInit): Promise<Response> {
   const token = localStorage.getItem("kp-access-token");

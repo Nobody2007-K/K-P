@@ -1,8 +1,11 @@
 """
 K&P Love — FastAPI application entry point.
 
-Run with:
+Run locally:
   uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+
+Deployed on Railway:
+  uvicorn app.main:app --host 0.0.0.0 --port $PORT
 """
 
 from __future__ import annotations
@@ -31,31 +34,41 @@ limiter = Limiter(key_func=get_remote_address, default_limits=["200/minute"])
 
 @asynccontextmanager
 async def lifespan(app: FastAPI) -> AsyncGenerator[None, None]:
-    """Application startup / shutdown lifecycle."""
     setup_logging()
-    logger.info(f"🌹 {settings.APP_NAME} backend starting ({settings.APP_ENV})")
+    logger.info(f"🌹 {settings.APP_NAME} starting  env={settings.APP_ENV}")
     yield
-    logger.info(f"🌹 {settings.APP_NAME} backend shutting down")
+    logger.info(f"🌹 {settings.APP_NAME} shutting down")
 
 
-# ── App factory ───────────────────────────────────────────────────────────────
+# ── App ───────────────────────────────────────────────────────────────────────
 app = FastAPI(
     title=f"{settings.APP_NAME} API",
-    description="Private couples application — exclusively for Kashish & Preshna 💕",
+    description="Private couples app — exclusively for Kashish & Preshna 💕",
     version="1.0.0",
-    docs_url="/docs" if not settings.is_production else None,
+    # Hide docs in production
+    docs_url="/docs"  if not settings.is_production else None,
     redoc_url="/redoc" if not settings.is_production else None,
     lifespan=lifespan,
 )
 
-# ── Middleware ────────────────────────────────────────────────────────────────
+# ── CORS ──────────────────────────────────────────────────────────────────────
+# Railway env var: CORS_ORIGINS=*   → allows all origins (use during setup)
+# Better:          CORS_ORIGINS=https://your-app.vercel.app,http://localhost:5173
+_origins = settings.cors_origins_list
+_wildcard = "*" in _origins
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=settings.cors_origins_list,
-    allow_credentials=True,
+    allow_origins=["*"] if _wildcard else _origins,
+    # Regex fallback catches any *.vercel.app preview deployments automatically
+    allow_origin_regex=r"https://.*\.vercel\.app" if not _wildcard else None,
+    # credentials=True cannot be combined with allow_origins=["*"]
+    allow_credentials=not _wildcard,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# ── Middleware ────────────────────────────────────────────────────────────────
 app.add_middleware(LoggingMiddleware)
 app.state.limiter = limiter
 app.add_middleware(SlowAPIMiddleware)
@@ -64,7 +77,7 @@ app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 # ── Exception handlers ────────────────────────────────────────────────────────
 register_exception_handlers(app)
 
-# ── API routers ───────────────────────────────────────────────────────────────
+# ── Routers ───────────────────────────────────────────────────────────────────
 app.include_router(auth.router)
 app.include_router(chat.router)
 app.include_router(location.router)
@@ -76,14 +89,10 @@ app.include_router(storage.router)
 app.include_router(ws_router)
 
 
-# ── Health check ─────────────────────────────────────────────────────────────
+# ── Health / root ─────────────────────────────────────────────────────────────
 @app.get("/health", tags=["health"])
 async def health_check() -> dict:
-    return {
-        "status": "ok",
-        "app": settings.APP_NAME,
-        "env": settings.APP_ENV,
-    }
+    return {"status": "ok", "app": settings.APP_NAME, "env": settings.APP_ENV}
 
 
 @app.get("/", tags=["root"])

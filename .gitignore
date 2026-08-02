@@ -52,5 +52,5 @@ __pycache__/
 # Secrets — never commit
 .env
 .env.local
-.env.production
 .env.*.local
+# .env.production is intentionally tracked (only contains public VITE_API_URL)

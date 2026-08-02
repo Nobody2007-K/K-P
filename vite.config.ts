@@ -7,12 +7,16 @@ export default defineConfig({
     client: { entry: "client" },
   },
 
-  // Target Vercel's edge/serverless runtime
+  // Vercel serverless preset — outputs to .vercel/output
   nitro: {
     preset: "vercel",
   },
 
   vite: {
+    // Explicitly load .env.production during `npm run build`
+    // so VITE_API_URL is baked into the production bundle.
+    envDir: ".",
+
     server: {
       port: 5173,
       strictPort: false,
