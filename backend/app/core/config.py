@@ -55,7 +55,7 @@ class Settings(BaseSettings):
     REDIS_URL: str = "redis://localhost:6379/0"
 
     # ── CORS ─────────────────────────────────────────────────────────────
-    CORS_ORIGINS: str = "http://localhost:5173,http://localhost:3000,https://backend-production-3f17e.up.railway.app"
+    CORS_ORIGINS: str = "https://k-p-wi1u.vercel.app,http://localhost:5173,http://localhost:3000,https://backend-production-3f17e.up.railway.app"
 
     # ── Logging ──────────────────────────────────────────────────────────
     LOG_LEVEL: str = "DEBUG"
