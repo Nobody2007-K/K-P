@@ -5,7 +5,7 @@ export { himAvatar, herAvatar };
 
 // ── Relationship start date ───────────────────────────────────────────────────
 // Change this to the real date Kashish & Preshna got together
-export const START_DATE = new Date("2025-08-02T00:00:00Z");
+export const START_DATE = new Date("2024-08-13T00:00:00Z");
 
 export function daysTogether() {
   return Math.floor((Date.now() - START_DATE.getTime()) / 86_400_000);
