@@ -8,7 +8,6 @@ import {
   FileText, Mic, Paperclip, Send, Smile, X,
 } from "lucide-react";
 import bg from "@/assets/romantic-bg.jpg";
-import { BottomNav } from "@/components/kp/Shell";
 import { HIM, HER } from "@/lib/kp-data";
 import { getStoredUser } from "@/lib/auth";
 
@@ -341,7 +340,6 @@ function ChatScreen() {
         {/* ── Input bar — ALWAYS visible, pinned to bottom ── */}
         <form onSubmit={sendText}
           className="glass mx-4 mb-3 flex items-center gap-2 rounded-full px-3 py-2 shrink-0"
-          style={{ marginBottom: "calc(0.75rem + env(safe-area-inset-bottom, 0px))" }}
         >
           {/* Attach any file */}
           <button type="button" aria-label="Attach file"
@@ -408,7 +406,7 @@ function ChatScreen() {
         </div>
       )}
 
-      <BottomNav />
+      {/* No BottomNav on chat — back arrow in header handles navigation */}
     </div>
   );
 }
